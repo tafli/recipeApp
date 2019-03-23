@@ -13,7 +13,7 @@ export class DropdownDirective {
     this.showDropdown = !this.showDropdown;
     const menu = this.elRef.nativeElement.querySelector('.dropdown-menu');
 
-    if(this.showDropdown) {
+    if (this.showDropdown) {
       this.renderer.addClass(menu, 'show');
     } else {
       this.renderer.removeClass(menu, 'show');

@@ -1,17 +1,21 @@
 <nav class="navbar navbar-expand navbar-light" style="background-color: #e3f2fd;">
-  <a class="navbar-brand" href="#">Recipe Book</a>
+  <a class="navbar-brand">Recipe Book</a>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item"><a class="nav-link" href="#" (click)="onSelect('recipe')">Recipes</a></li>
-      <li class="nav-item"><a class="nav-link" href="#" (click)="onSelect('shopping-list')">Shopping List</a></li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/recipes">Recipes</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/shopping-list">Shopping List</a>
+      </li>
     </ul>
     <ul class="navbar-nav my-2 my-lg-0">
       <li class="nav-item dropdown" appDropdown>
-        <a class="nav-link dropdown-toggle" href="#">Manage</a>
-        <div class="dropdown-menu dropdown-menu-right">
-          <a class="dropdown-item" href="#">Save Data</a>
-          <a class="dropdown-item" href="#">Fetch Data</a>
+        <a class="nav-link dropdown-toggle" style="cursor: pointer;">Manage</a>
+        <div class="dropdown-menu dropdown-menu-right" style="cursor: pointer;">
+          <a class="dropdown-item" style="cursor: pointer;">Save Data</a>
+          <a class="dropdown-item" style="cursor: pointer;">Fetch Data</a>
         </div>
       </li>
     </ul>
