@@ -23,15 +23,16 @@
           <div class="form-group">
             <label for="imagePath">Image URL</label>
             <input type="text" id="imagePath" class="form-control"
-            formControlName="imagePath">
+            formControlName="imagePath"
+            #imagePath>
           </div>
         </div>
       </div>
-<!--      <div class="row">-->
-<!--        <div class="col">-->
-<!--          <img src="" class="img-fluid" alt="image">-->
-<!--        </div>-->
-<!--      </div>-->
+      <div class="row">
+        <div class="col">
+          <img [src]="imagePath.value" class="img-fluid">
+        </div>
+      </div>
       <div class="row">
         <div class="col-12">
           <label for="description">Description</label>
@@ -43,7 +44,7 @@
         <div class="col-12" formArrayName="ingredients">
           <div class="row my-1"
                *ngFor="let ingredientCtrl of getControls(); let i = index"
-               [formGroupName]="i">
+               [formGroupName]="i.toString()">
             <div class="col-xs-2 mx-1">
               <input type="text" class="form-control"
               formControlName="name">
@@ -53,7 +54,7 @@
               formControlName="amount">
             </div>
             <div class="col-xs-2 mx-1">
-              <button class="btn btn-danger">X</button>
+              <button type="button" class="btn btn-danger" (click)="onDeleteIngredient(i)">X</button>
             </div>
           </div>
           <hr>
