@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostBinding, HostListener, Input, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, HostBinding, HostListener, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[appDropdown]'
@@ -10,13 +10,30 @@ export class DropdownDirective {
   }
 
   @HostListener('click') toggleOpen() {
-    this.showDropdown = !this.showDropdown;
-    const menu = this.elRef.nativeElement.querySelector('.dropdown-menu');
+    this.toggle();
+  }
 
-    if (this.showDropdown) {
-      this.renderer.addClass(menu, 'show');
+  @HostListener('mouseleave') toggleClose() {
+    this.close();
+  }
+
+  private toggle() {
+    if (!this.showDropdown) {
+      this.open();
     } else {
-      this.renderer.removeClass(menu, 'show');
+      this.close();
     }
+  }
+
+  private open() {
+    const menu = this.elRef.nativeElement.querySelector('.dropdown-menu');
+    this.renderer.addClass(menu, 'show');
+    this.showDropdown = true;
+  }
+
+  private close() {
+    const menu = this.elRef.nativeElement.querySelector('.dropdown-menu');
+    this.renderer.removeClass(menu, 'show');
+    this.showDropdown = false;
   }
 }
