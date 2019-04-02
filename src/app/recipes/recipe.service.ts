@@ -28,14 +28,20 @@ export class RecipeService {
     )
   ];
 
-  constructor(private shoppingListService: ShoppingListService) {}
+  constructor(private shoppingListService: ShoppingListService) {
+  }
+
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.recipeChanged();
+  }
 
   getRecipes() {
     return this.recipes.slice();
   }
 
   getRecipe(index: number): Recipe {
-    return this.recipes[index];
+    return this.recipes[ index ];
   }
 
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
@@ -44,16 +50,20 @@ export class RecipeService {
 
   addRecipe(recipe: Recipe) {
     this.recipes.push(recipe);
-    this.recipesChanged.next(this.getRecipes());
+    this.recipeChanged();
   }
 
   updateRecipe(index: number, newRecipe: Recipe) {
-    this.recipes[index] = newRecipe;
-    this.recipesChanged.next(this.getRecipes());
+    this.recipes[ index ] = newRecipe;
+    this.recipeChanged();
   }
 
   deleteRecipe(index: number) {
     this.recipes.splice(index, 1);
+    this.recipeChanged();
+  }
+
+  private recipeChanged() {
     this.recipesChanged.next(this.recipes.slice());
   }
 }
