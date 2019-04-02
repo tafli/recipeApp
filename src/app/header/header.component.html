@@ -11,19 +11,26 @@
       </li>
     </ul>
     <ul class="navbar-nav my-2 my-lg-0">
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/signup">Register</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/signin">Log In</a>
-      </li>
-      <li class="nav-item dropdown" appDropdown>
-        <a class="nav-link dropdown-toggle" style="cursor: pointer;">Manage</a>
-        <div class="dropdown-menu dropdown-menu-right" style="cursor: pointer;">
-          <a class="dropdown-item" style="cursor: pointer;" (click)="onSaveData()">Save Data</a>
-          <a class="dropdown-item" style="cursor: pointer;" (click)="onFetchData()">Fetch Data</a>
-        </div>
-      </li>
+      <ng-template [ngIf]="!authService.isAuthenticated()">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/signup">Register</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/signin">Log In</a>
+        </li>
+      </ng-template>
+      <ng-template [ngIf]="authService.isAuthenticated()">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" style="cursor: pointer;" (click)="onLogout()">Log Out</a>
+        </li>
+        <li class="nav-item dropdown" appDropdown>
+          <a class="nav-link dropdown-toggle" style="cursor: pointer;">Manage</a>
+          <div class="dropdown-menu dropdown-menu-right" style="cursor: pointer;">
+            <a class="dropdown-item" style="cursor: pointer;" (click)="onSaveData()">Save Data</a>
+            <a class="dropdown-item" style="cursor: pointer;" (click)="onFetchData()">Fetch Data</a>
+          </div>
+        </li>
+      </ng-template>
     </ul>
   </div>
 </nav>
